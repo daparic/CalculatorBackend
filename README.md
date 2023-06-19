@@ -40,6 +40,8 @@ password_file C:\Users\johnny\password.file
 CalculatorBackend.exe tcp://192.168.2.146:1883 id12345 john p4ssw0rd
 ```
 
-Test the CalculatorBackend API endpoint: 
+# Test the CalculatorBackend API endpoint: 
 - By `curl -s http://localhost:8080/add/4.2/3.1` 
 - By [SPA CalculatorFrontend](https://github.com/daparic/CalculatorFrontend).
+
+The Jetson Nano also sends into the MQTT broker the recognized objects viewed from its attached USB video camera. 
