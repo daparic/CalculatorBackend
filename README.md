@@ -40,6 +40,6 @@ password_file C:\Users\johnny\password.file
 CalculatorBackend.exe tcp://192.168.2.146:1883 id12345 john p4ssw0rd
 ```
 
-Test the API endpoint: `curl -s http://localhost:8080/add/4.2/3.1`
-
-You can also build the solution using Visual Studio 2019. 
+Test the CalculatorBackend API endpoint: 
+- By `curl -s http://localhost:8080/add/4.2/3.1` 
+- By [SPA CalculatorFrontend](https://github.com/daparic/CalculatorFrontend).
