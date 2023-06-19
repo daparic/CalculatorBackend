@@ -1,3 +1,5 @@
+![Alt text](diagram.png?raw=true "diagram")
+
 # Description
 This is a calculator backend API server that serves the following endpoints:
 - `http://localhost:8080/add/4.2/3.1`
