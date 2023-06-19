@@ -10,14 +10,15 @@ Every request is sent to the MQTT broker in the `ops` channel.
 Download the executable [Release.zip](https://github.com/daparic/CalculatorBackend/releases/download/0.0.1/Release.zip) 
 
 # Run an MQTT broker
-#### MQTT using docker
+There are two ways to quickly have an MQTT broker.
+#### I) MQTT using docker
 ```
 git clone https://github.com/daparic/mosquitto-docker.git
 cd mosquitto-docker
 docker-compose up -d
 ```
 
-#### MQTT using Windows installer
+#### II) MQTT using Windows installer
 Install [mosquitto-2.0.15-install-windows-x64.exe](https://mosquitto.org/files/binary/win64/mosquitto-2.0.15-install-windows-x64.exe). Then 
 execute the following:
 ```
