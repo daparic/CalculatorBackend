@@ -9,7 +9,14 @@ Every request is sent to the MQTT broker in the `ops` channel.
 
 Download the executable [Release.zip](https://github.com/daparic/CalculatorBackend/releases/download/0.0.1/Release.zip) 
 
-### Run the backend API server and specifying the MQTT broker details
+### Run an MQTT broker
+```
+git clone https://github.com/daparic/mosquitto-docker.git
+cd mosquitto-docker
+docker-compose up -d
+```
+
+### Run the backend API server and specify the MQTT broker details
 ```bash
 CalculatorBackend.exe tcp://192.168.2.146:1883 id12345 john p4ssw0rd
 ```
