@@ -1,4 +1,4 @@
-### Description
+# Description
 This is a calculator backend API server that serves the following endpoints:
 - `http://localhost:8080/add/4.2/3.1`
 - `http://localhost:8080/substract/4.2/3.1`
@@ -9,7 +9,7 @@ Every request is sent to the MQTT broker in the `ops` channel.
 
 Download the executable [Release.zip](https://github.com/daparic/CalculatorBackend/releases/download/0.0.1/Release.zip) 
 
-### Run an MQTT broker
+# Run an MQTT broker
 #### MQTT using docker
 ```
 git clone https://github.com/daparic/mosquitto-docker.git
@@ -31,7 +31,7 @@ listener 1883 0.0.0.0
 password_file C:\Users\johnny\password.file
 ```
 
-### Run the backend API server and specify the MQTT broker details
+# Run the backend API server and specify the MQTT broker details
 ```bash
 CalculatorBackend.exe tcp://192.168.2.146:1883 id12345 john p4ssw0rd
 ```
