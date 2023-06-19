@@ -10,10 +10,25 @@ Every request is sent to the MQTT broker in the `ops` channel.
 Download the executable [Release.zip](https://github.com/daparic/CalculatorBackend/releases/download/0.0.1/Release.zip) 
 
 ### Run an MQTT broker
+#### MQTT using docker
 ```
 git clone https://github.com/daparic/mosquitto-docker.git
 cd mosquitto-docker
 docker-compose up -d
+```
+
+#### MQTT using Windows installer
+Install [mosquitto-2.0.15-install-windows-x64.exe](https://mosquitto.org/files/binary/win64/mosquitto-2.0.15-install-windows-x64.exe). Then 
+execute the following:
+```
+mosquitto_passwd.exe -c -b C:\Users\johnny\password.file johnny p4ssw0rd
+mosquitto.exe -v -c mosquitto.conf
+```
+
+where, `mosquitto.conf` file has contents:
+```
+listener 1883 0.0.0.0
+password_file C:\Users\johnny\password.file
 ```
 
 ### Run the backend API server and specify the MQTT broker details
