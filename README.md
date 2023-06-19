@@ -1,9 +1,9 @@
 ### Description
 This is a calculator backend API server that serves the following endpoints:
-- http://localhost:8080/add/4.2/3.1
-- http://localhost:8080/substract/4.2/3.1
-- http://localhost:8080/multiply/4.2/3.1
-- http://localhost:8080/divide/4.2/3.1
+- `http://localhost:8080/add/4.2/3.1`
+- `http://localhost:8080/substract/4.2/3.1`
+- `http://localhost:8080/multiply/4.2/3.1`
+- `http://localhost:8080/divide/4.2/3.1`
 
 Every request is sent to the MQTT broker in the `ops` channel. 
 
