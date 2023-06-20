@@ -13,7 +13,9 @@ Each calculator operation request is sent to the MQTT broker `ops` channel.
 Download the executable [Release.zip](https://github.com/daparic/CalculatorBackend/releases/download/0.0.1/Release.zip) 
 
 # Run an MQTT broker
-There are two ways to quickly have an MQTT broker.
+There are two ways to quickly have an MQTT broker. I discourage the use of the native docker of Windows or Mac due to
+the difficulty of accessing the container instance. 
+
 #### I) MQTT using docker
 ```
 git clone https://github.com/daparic/mosquitto-docker.git
