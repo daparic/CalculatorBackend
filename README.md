@@ -46,4 +46,9 @@ CalculatorBackend.exe tcp://192.168.2.146:1883 id12345 john p4ssw0rd
 - By `curl -s http://localhost:8080/add/4.2/3.1` 
 - By [SPA CalculatorFrontend](https://github.com/daparic/CalculatorFrontend).
 
+# Some useful extra tools
+- [MQTT GUI Viewer](https://www.emqx.com/en/downloads/MQTTX/v1.9.3/MQTTX-Setup-1.9.3-x64.exe)
+- [MQTT CLI Viewer](https://github.com/rainu/mqtt-shell/releases/download/v2.3.0/mqtt-shell-windows-amd64.exe)
+- [MQTT Broker For Windows](https://mosquitto.org/files/binary/win64/mosquitto-2.0.15-install-windows-x64.exe)
+
 The Jetson Nano also sends into the MQTT broker the recognized objects viewed from its attached USB video camera. 
