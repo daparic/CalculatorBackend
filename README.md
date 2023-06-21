@@ -1,7 +1,7 @@
 ![Alt text](diagram.png?raw=true "diagram")
 
 # Description
-This is a calculator backend API server of the [SPA CalculatorFrontend](https://github.com/daparic/CalculatorFrontend). 
+This is a calculator backend API server of the SPA [CalculatorFrontend](https://github.com/daparic/CalculatorFrontend). 
 It serves the following endpoints:
 - `http://localhost:8080/add/4.2/3.1`
 - `http://localhost:8080/substract/4.2/3.1`
@@ -24,27 +24,32 @@ docker-compose up -d
 ```
 
 #### II) MQTT using Windows installer
-Install [mosquitto-2.0.15-install-windows-x64.exe](https://mosquitto.org/files/binary/win64/mosquitto-2.0.15-install-windows-x64.exe). Then 
-execute the following:
+Install [mosquitto-2.0.15-install-windows-x64.exe](https://mosquitto.org/files/binary/win64/mosquitto-2.0.15-install-windows-x64.exe). 
+
+Create a password file:
 ```
-mosquitto_passwd.exe -c -b C:\Users\johnny\password.file johnny p4ssw0rd
-mosquitto.exe -v -c mosquitto.conf
+mosquitto_passwd.exe -c -b D:\password.file johnny p4ssw0rd
 ```
 
-where, `mosquitto.conf` file has contents:
+Create an MQTT configuration text file at `D:\mosquitto.conf` with the following two lines content:
 ```
 listener 1883 0.0.0.0
-password_file C:\Users\johnny\password.file
+password_file D:\password.file
+```
+
+Start the MQTT broker instance:
+```
+mosquitto.exe -v -c D:\mosquitto.conf
 ```
 
 # Run the backend API server and specify the MQTT broker details
 ```bash
-CalculatorBackend.exe tcp://192.168.2.146:1883 id12345 john p4ssw0rd
+CalculatorBackend.exe tcp://localhost:1883 id12345 john p4ssw0rd
 ```
 
 # Test the CalculatorBackend API endpoint: 
 - By `curl -s http://localhost:8080/add/4.2/3.1` 
-- By [SPA CalculatorFrontend](https://github.com/daparic/CalculatorFrontend).
+- By SPA [CalculatorFrontend](https://github.com/daparic/CalculatorFrontend).
 
 # Some useful extra tools
 - [MQTT GUI Viewer](https://www.emqx.com/en/downloads/MQTTX/v1.9.3/MQTTX-Setup-1.9.3-x64.exe)
