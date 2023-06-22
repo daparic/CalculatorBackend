@@ -6,6 +6,16 @@
 
 using namespace nlohmann;
 
+bool is_valid_float(const std::string& value) {
+    try {
+        std::size_t pos = 0;
+        std::stof(value, &pos);
+        return pos == value.length(); // Check if the entire string was consumed
+    } catch (const std::exception&) {
+        return false;
+    }
+}
+
 int on_message(void* context, char* topicName, int topicLen, MQTTClient_message* message) {
     char* payload = static_cast<char*>(message->payload);
     printf("Received operation %s\n", payload);
@@ -21,10 +31,7 @@ CalcResourceFactory::CalcResourceFactory(const char *mqttAddress,
     : _mqttAddress(mqttAddress), _mqttClientId(mqttClientId), _mqttUsername(mqttUsername),
       _mqttPassword(mqttPassword) {
     _resource = make_shared<Resource>();
-    _resource->set_path(
-        "/{operation: add|subtract|multiply|divide}"
-        "/{num1: [-+]?[0-9]*\\.?[0-9]*}"
-        "/{num2: [-+]?[0-9]*\\.?[0-9]*}");
+    _resource->set_path("/{operation: add|subtract|multiply|divide}"); 
     _resource->set_method_handler("GET", 
         [&](const auto session) {
             get_handler(session);
@@ -47,9 +54,6 @@ shared_ptr<Resource> CalcResourceFactory::get_resource() const {
 }
 
 float CalcResourceFactory::calculate(float num1, float num2, string operation) {
-    string oper = operation + ":" + std::to_string(num1) + "," + std::to_string(num2);
-    publish(_client, "ops", oper.c_str());
-
     if(operation == "add") {
         return num1 + num2;
     }
@@ -66,10 +70,20 @@ float CalcResourceFactory::calculate(float num1, float num2, string operation) {
 
 tuple<float, float, string> CalcResourceFactory::get_path_parameters(
         const shared_ptr<Session> session) const {
+
     const auto& request = session->get_request();
-    const auto operation = request->get_path_parameter("operation");
-    auto num1 = atof(request->get_path_parameter("num1").c_str());
-    auto num2 = atof(request->get_path_parameter("num2").c_str());
+    string operation = "invalid";
+    float num1, num2;
+    if (request->has_query_parameter("param1") && request->has_query_parameter("param2")) {
+        std::string param1 = request->get_query_parameter("param1");
+        std::string param2 = request->get_query_parameter("param2");
+        if (is_valid_float(param1) && is_valid_float(param2)) {
+            operation = request->get_path_parameter("operation");
+            num1 = std::stof(param1);
+            num2 = std::stof(param2);
+        }
+    }
+
     return make_tuple(num1, num2, operation);
 } 
 
@@ -84,8 +98,18 @@ string CalcResourceFactory::to_json(float result) {
 
 void CalcResourceFactory::get_handler(const shared_ptr<Session> session) {
     const auto [num1, num2, operation] = get_path_parameters(session);
-    auto result = calculate(num1, num2, operation);
-    auto content = to_json(result);
-    session->close(OK, content, 
-        {{"Content-Length", to_string(content.size())}});
+    string content = "{\"result\":\"invalid\"}";
+    string msg = "nan";
+    float result;
+    if (operation != "invalid") {
+        result = calculate(num1, num2, operation);
+        msg = std::to_string(result);
+        content = to_json(result);
+    }
+
+    string oper = operation + ":" + std::to_string(num1) + "," + std::to_string(num2) + "(" + msg + ")";
+    publish(_client, "ops", oper.c_str());
+
+    session->close(OK, content,
+        { {"Content-Length", to_string(content.size())} });
 }
