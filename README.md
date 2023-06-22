@@ -3,10 +3,10 @@
 # Description
 This is a calculator backend API server of the SPA [CalculatorFrontend](https://github.com/daparic/CalculatorFrontend). 
 It serves the following endpoints:
-- `http://localhost:8080/add/4.2/3.1`
-- `http://localhost:8080/subtract/4.2/3.1`
-- `http://localhost:8080/multiply/4.2/3.1`
-- `http://localhost:8080/divide/4.2/3.1`
+- `http://localhost:8080/add?param1=4.2&param2=3.1`
+- `http://localhost:8080/subtract?param1=4.2&param2=3.1`
+- `http://localhost:8080/multiply?param1=4.2&param2=3.1`
+- `http://localhost:8080/divide?param1=4.2&param2=3.1`
 
 Each calculator operation request is sent to the MQTT broker `ops` channel. 
 
@@ -48,7 +48,7 @@ CalculatorBackend.exe tcp://localhost:1883 id12345 john p4ssw0rd
 ```
 
 # Test the CalculatorBackend API endpoint: 
-- By `curl -s http://localhost:8080/add/4.2/3.1` 
+- By `curl -s 'http://localhost:8080/add?param1=4.2&param2=3.1'` 
 - By SPA [CalculatorFrontend](https://github.com/daparic/CalculatorFrontend).
 
 # Some useful extra tools
