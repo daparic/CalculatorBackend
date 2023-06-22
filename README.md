@@ -10,7 +10,7 @@ It serves the following endpoints:
 
 Each calculator operation request is sent to the MQTT broker `ops` channel. 
 
-Download the executable [Release.zip](https://github.com/daparic/CalculatorBackend/releases/download/0.0.1/Release.zip) 
+Download the executable [Release.zip](https://github.com/daparic/CalculatorBackend/releases/download/0.0.2/Release.zip)
 
 # Run an MQTT broker
 There are two ways to quickly have an MQTT broker. I discourage the use of the native docker of Windows or Mac due to
