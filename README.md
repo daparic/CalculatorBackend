@@ -4,7 +4,7 @@
 This is a calculator backend API server of the SPA [CalculatorFrontend](https://github.com/daparic/CalculatorFrontend). 
 It serves the following endpoints:
 - `http://localhost:8080/add/4.2/3.1`
-- `http://localhost:8080/substract/4.2/3.1`
+- `http://localhost:8080/subtract/4.2/3.1`
 - `http://localhost:8080/multiply/4.2/3.1`
 - `http://localhost:8080/divide/4.2/3.1`
 
